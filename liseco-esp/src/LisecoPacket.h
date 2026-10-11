@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 #define LISECO_HEADER 0xABCD
-#define LISECO_MAC_SIZE 32
+#define LISECO_MAC_SIZE 16
 
 enum PacketType {
     HELLO       = 0x01,

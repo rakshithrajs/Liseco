@@ -14,18 +14,22 @@ class LisecoClient {
 
         bool connect(const char* host, uint16_t port);
 
-        void send(const String& message);
+        bool send(const std::vector<uint8_t>& plain);
 
-        String receive();
+        bool receive(std::vector<uint8_t>& outPlain);
 
         bool receivePacket(LisecoPacket& packet);
 
         bool handshake();
 
         void loop();
+
+        bool connected;
+        bool secure;
     private:
         WiFiClient client;
-        bool connected;
+        std::vector<uint8_t> session_key;
+        std::vector<uint8_t> PSK;
 };
 
 #endif

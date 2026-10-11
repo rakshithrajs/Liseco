@@ -3,7 +3,7 @@
 from enum import IntEnum
 
 LISECO_HEADER = 0xABCD
-LISECO_MAC_SIZE = 32
+LISECO_MAC_SIZE = 16
 
 
 class PacketType(IntEnum):
@@ -52,9 +52,11 @@ class LisecoPacket:
             LisecoPacket: Parsed LisecoPacket or None if invalid.
         """
         if len(raw) < 5:
+            print("[Liseco] Packet too short to parse")
             return None
         header = int.from_bytes(raw[0:2], "big")
         if header != LISECO_HEADER:
+            print("[Liseco] Invalid packet header")
             return None
         ptype = raw[2]
         length = int.from_bytes(raw[3:5], "big")
